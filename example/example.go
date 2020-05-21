@@ -15,13 +15,13 @@ func main() {
 
 	logrus.SetLevel(logrus.DebugLevel)
 
-	logrus.AddHook(&slackrus.SlackrusHook{
-		HookURL:        "https://hooks.slack.com/services/abc123/defghijklmnopqrstuvwxyz",
+	logrus.AddHook(slackrus.NewSlackrusHook(slackrus.SlackrusHookConfig{
+		Token:          "12345",
 		AcceptedLevels: slackrus.LevelThreshold(logrus.DebugLevel),
 		Channel:        "#slack-testing",
 		IconEmoji:      ":ghost:",
 		Username:       "foobot",
-	})
+	}))
 
 	logrus.WithFields(logrus.Fields{"foo": "bar", "foo2": 42}).Warn("this is a warn level message")
 	logrus.Info("this is an info level message")
