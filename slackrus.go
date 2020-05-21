@@ -10,7 +10,7 @@ import (
 
 // Project version
 const (
-	VERISON = "0.0.3"
+	Version = "1.0.0"
 )
 
 // SlackrusHook is a logrus Hook for dispatching messages to the specified

@@ -12,7 +12,7 @@ import (
 	"os"
 
 	"github.com/sirupsen/logrus"
-	"github.com/yarlson/slackrus"
+	"github.com/yarlson/slackrus/v1"
 )
 
 func main() {
