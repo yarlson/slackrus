@@ -1,4 +1,4 @@
-module github.com/yarlson/slackrus/v1
+module github.com/yarlson/slackrus
 
 go 1.13
 
