@@ -42,7 +42,7 @@ func (sh *SlackrusHook) Fire(e *logrus.Entry) error {
 	if sh.Disabled {
 		return nil
 	}
-	
+
 	color := ""
 	switch e.Level {
 	case logrus.DebugLevel:
@@ -93,7 +93,9 @@ func (sh *SlackrusHook) Fire(e *logrus.Entry) error {
 	c := slack.NewClient(sh.HookURL)
 
 	if sh.Asynchronous {
-		go c.SendMessage(msg)
+		go func() {
+			_ = c.SendMessage(msg)
+		}()
 		return nil
 	}
 

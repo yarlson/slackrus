@@ -2,7 +2,6 @@ slackrus
 ========
 
 Slack hook for [Logrus](https://github.com/sirupsen/logrus). 
->>>>>>> Fix import path
 
 ## Use
 
@@ -10,9 +9,10 @@ Slack hook for [Logrus](https://github.com/sirupsen/logrus).
 package main
 
 import (
-	logrus "github.com/sirupsen/logrus"
-	"github.com/johntdyer/slackrus"
 	"os"
+
+	"github.com/sirupsen/logrus"
+	"github.com/yarlson/slackrus"
 )
 
 func main() {
@@ -22,7 +22,7 @@ func main() {
 	logrus.SetOutput(os.Stderr)
 
 	logrus.SetLevel(logrus.DebugLevel)
-	
+
 	logrus.AddHook(&slackrus.SlackrusHook{
 		HookURL:        "https://hooks.slack.com/services/abc123/defghijklmnopqrstuvwxyz",
 		AcceptedLevels: slackrus.LevelThreshold(logrus.DebugLevel),
@@ -31,9 +31,9 @@ func main() {
 		Username:       "foobot",
 	})
 
-	logrus.Warn("warn")
-	logrus.Info("info")
-	logrus.Debug("debug")
+	logrus.WithFields(logrus.Fields{"foo": "bar", "foo2": 42}).Warn("this is a warn level message")
+	logrus.Info("this is an info level message")
+	logrus.Debug("this is a debug level message")
 }
 
 ```
